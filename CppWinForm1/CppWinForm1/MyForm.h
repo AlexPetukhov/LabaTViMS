@@ -67,13 +67,21 @@ namespace CppWinForm1 {
 	private: System::Windows::Forms::TextBox^  textBoxNumberOfExp;
 	private: System::Windows::Forms::Button^  buttonGO;
 	private: System::Windows::Forms::DataGridView^  dataGridView2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  NumberOfShoot;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  FirstShooter;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  SecondShooter;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  ThirdShooter;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  RyadRaspredelenia;
+
+
+
+
 
 
 
@@ -100,6 +108,10 @@ namespace CppWinForm1 {
 			this->textBoxNumberOfShoots = (gcnew System::Windows::Forms::TextBox());
 			this->buttonUpdatePMatrix = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->NumberOfShoot = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->FirstShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SecondShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ThirdShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -109,10 +121,7 @@ namespace CppWinForm1 {
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->NumberOfShoot = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->FirstShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SecondShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->ThirdShooter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RyadRaspredelenia = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->SuspendLayout();
@@ -172,89 +181,12 @@ namespace CppWinForm1 {
 					this->FirstShooter, this->SecondShooter, this->ThirdShooter
 			});
 			this->dataGridView1->EnableHeadersVisualStyles = false;
-			this->dataGridView1->Location = System::Drawing::Point(420, 29);
+			this->dataGridView1->Location = System::Drawing::Point(592, 29);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->Size = System::Drawing::Size(403, 431);
 			this->dataGridView1->TabIndex = 5;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(16, 30);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(395, 52);
-			this->label4->TabIndex = 6;
-			this->label4->Text = resources->GetString(L"label4.Text");
-			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(417, 13);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(180, 13);
-			this->label5->TabIndex = 7;
-			this->label5->Text = L"Таблица вероятностей попаданий";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(16, 155);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(121, 13);
-			this->label6->TabIndex = 8;
-			this->label6->Text = L"Число экспериментов";
-			// 
-			// textBoxNumberOfExp
-			// 
-			this->textBoxNumberOfExp->Location = System::Drawing::Point(19, 171);
-			this->textBoxNumberOfExp->Name = L"textBoxNumberOfExp";
-			this->textBoxNumberOfExp->Size = System::Drawing::Size(100, 20);
-			this->textBoxNumberOfExp->TabIndex = 9;
-			this->textBoxNumberOfExp->Text = L"1000";
-			// 
-			// buttonGO
-			// 
-			this->buttonGO->Location = System::Drawing::Point(145, 167);
-			this->buttonGO->Name = L"buttonGO";
-			this->buttonGO->Size = System::Drawing::Size(75, 23);
-			this->buttonGO->TabIndex = 10;
-			this->buttonGO->Text = L"Рассчет";
-			this->buttonGO->UseVisualStyleBackColor = true;
-			this->buttonGO->Click += gcnew System::EventHandler(this, &MyForm::buttonGO_Click);
-			// 
-			// dataGridView2
-			// 
-			this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::Control;
-			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->Column1,
-					this->Column2, this->Column3
-			});
-			this->dataGridView2->GridColor = System::Drawing::SystemColors::Control;
-			this->dataGridView2->Location = System::Drawing::Point(19, 196);
-			this->dataGridView2->Name = L"dataGridView2";
-			this->dataGridView2->RowHeadersVisible = false;
-			this->dataGridView2->Size = System::Drawing::Size(304, 600);
-			this->dataGridView2->TabIndex = 11;
-			this->dataGridView2->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView2_CellContentClick);
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Значение случайной величины";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Число повторений";
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Частота";
-			this->Column3->Name = L"Column3";
 			// 
 			// NumberOfShoot
 			// 
@@ -276,11 +208,94 @@ namespace CppWinForm1 {
 			this->ThirdShooter->HeaderText = L"Третий стрелок";
 			this->ThirdShooter->Name = L"ThirdShooter";
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(16, 30);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(395, 52);
+			this->label4->TabIndex = 6;
+			this->label4->Text = resources->GetString(L"label4.Text");
+			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(589, 13);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(180, 13);
+			this->label5->TabIndex = 7;
+			this->label5->Text = L"Таблица вероятностей попаданий";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(16, 155);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(121, 13);
+			this->label6->TabIndex = 8;
+			this->label6->Text = L"Число экспериментов";
+			// 
+			// textBoxNumberOfExp
+			// 
+			this->textBoxNumberOfExp->Location = System::Drawing::Point(19, 171);
+			this->textBoxNumberOfExp->Name = L"textBoxNumberOfExp";
+			this->textBoxNumberOfExp->Size = System::Drawing::Size(100, 20);
+			this->textBoxNumberOfExp->TabIndex = 9;
+			this->textBoxNumberOfExp->Text = L"10000";
+			// 
+			// buttonGO
+			// 
+			this->buttonGO->Location = System::Drawing::Point(145, 167);
+			this->buttonGO->Name = L"buttonGO";
+			this->buttonGO->Size = System::Drawing::Size(75, 23);
+			this->buttonGO->TabIndex = 10;
+			this->buttonGO->Text = L"Рассчет";
+			this->buttonGO->UseVisualStyleBackColor = true;
+			this->buttonGO->Click += gcnew System::EventHandler(this, &MyForm::buttonGO_Click);
+			// 
+			// dataGridView2
+			// 
+			this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::Control;
+			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->Column1,
+					this->Column2, this->Column3, this->RyadRaspredelenia
+			});
+			this->dataGridView2->GridColor = System::Drawing::SystemColors::Control;
+			this->dataGridView2->Location = System::Drawing::Point(19, 196);
+			this->dataGridView2->Name = L"dataGridView2";
+			this->dataGridView2->RowHeadersVisible = false;
+			this->dataGridView2->Size = System::Drawing::Size(528, 600);
+			this->dataGridView2->TabIndex = 11;
+			this->dataGridView2->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView2_CellContentClick);
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Значение случайной величины";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Число повторений";
+			this->Column2->Name = L"Column2";
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Частота";
+			this->Column3->Name = L"Column3";
+			// 
+			// RyadRaspredelenia
+			// 
+			this->RyadRaspredelenia->HeaderText = L"Ряд распределения";
+			this->RyadRaspredelenia->Name = L"RyadRaspredelenia";
+			this->RyadRaspredelenia->Width = 225;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(832, 807);
+			this->ClientSize = System::Drawing::Size(1007, 807);
 			this->Controls->Add(this->dataGridView2);
 			this->Controls->Add(this->buttonGO);
 			this->Controls->Add(this->textBoxNumberOfExp);
@@ -413,12 +428,12 @@ namespace CppWinForm1 {
 
 	private: System::Void buttonGO_Click(System::Object^  sender, System::EventArgs^  e) {
 		LoadPMatrix();
-
+		
 		std::map<int, int> mapka;
+		std::map<int, double> ryadR = CalcRyadRaspredelenia();
 
 		String^ Nstr = textBoxNumberOfExp->Text;
 		N = N.Parse(Nstr);
-
 
 		dataGridView2->Rows->Clear();
 
@@ -440,9 +455,51 @@ namespace CppWinForm1 {
 			dataGridView2->Rows[i]->Cells[1]->Value = num.ToString();
 			dataGridView2->Rows[i]->Cells[2]->Value = freq.ToString();
 
+			double rasrpFreq = ryadR[sv];
+			dataGridView2->Rows[i]->Cells[3]->Value = rasrpFreq.ToString();
+
 			i++;
 		}
+	
+	}
 
+	private: double p(int x, int y) {
+		if (y < R) return P[x][y];
+		else return 1;
+	}
+
+	private: std::map<int, double> CalcRyadRaspredelenia() {
+		std::map<int, double> mapka;
+		// etta : 3, ... , 3 * r
+
+		// (a,b,c) : a,b,c = 0...R - nomer vystrela kogda popal
+
+		for (int a = 0; a < R; a++) {
+			for (int b = 0; b < R; b++) {
+				for (int c = 0; c < R; c++) {
+					int sum = a + b + c + 3; // kolvo vystrelov
+					double cur = 1; // veroyatnost` etogo ishoda
+
+					for (int i = 0; i < a; i++) {
+						cur *= (1 - p(0, i));
+					}
+					if(a != R) cur *= p(0, a);
+
+					for (int i = 0; i < b; i++) {
+						cur *= (1 - p(1, i));
+					}
+					if(b != R) cur *= p(1, b);
+
+					for (int i = 0; i < c; i++) {
+						cur *= (1 - p(2, i));
+					}
+					if(c != R) cur *= p(2, c);
+
+					mapka[sum] += cur;
+				}
+			}
+		}
+		return mapka;
 	}
 
 	private: System::Void dataGridView2_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
