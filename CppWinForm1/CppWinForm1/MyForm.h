@@ -708,14 +708,29 @@ namespace CppWinForm1 {
 
 		//**
 		// NEW CODE:
-		double E = 1 / p; //мат. ожидание
+		double E = 0; //мат. ожидание
 		double xs = 0; //выборочное среднее
-		double D = (1 - p) / pow(p, 2); //дисперсия
+		double D = 0; //дисперсия
 		double S2 = 0; //выборочная дисперсия
 		double Me = 0;
 		double R = 0; //размах выборки
 		double max = 0; //максимальное отклонение частоты от вероятности 
+
+
+		//E, D:
+		for (auto o : ryadR) {
+			int sv = o.first;
+			double freq = o.second;
+
+			E += sv * freq;
+			D += sv * sv * freq;
+		}
+		D -= E * E;
+
 		//**
+
+
+
 
 
 		dataGridView2->Rows->Clear();
@@ -783,22 +798,23 @@ namespace CppWinForm1 {
 					for (int i = 0; i < a; i++) {
 						cur *= (1 - p(0, i));
 					}
-					if(a != R) cur *= p(0, a);
+					if(a != R - 1) cur *= p(0, a);
 
 					for (int i = 0; i < b; i++) {
 						cur *= (1 - p(1, i));
 					}
-					if(b != R) cur *= p(1, b);
+					if(b != R - 1) cur *= p(1, b);
 
 					for (int i = 0; i < c; i++) {
 						cur *= (1 - p(2, i));
 					}
-					if(c != R) cur *= p(2, c);
+					if(c != R - 1) cur *= p(2, c);
 
 					mapka[sum] += cur;
 				}
 			}
 		}
+
 		return mapka;
 	}
 
