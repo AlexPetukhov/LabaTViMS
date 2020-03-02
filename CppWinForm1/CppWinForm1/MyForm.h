@@ -2,6 +2,7 @@
 #include <vector>
 #include <ctime>
 #include <math.h>
+#include <algorithm>
 #include <map>
 
 
@@ -78,6 +79,33 @@ namespace CppWinForm1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  RyadRaspredelenia;
+	private: System::Windows::Forms::TabControl^  tabControl1;
+	private: System::Windows::Forms::TabPage^  tabPage1;
+	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::TextBox^  textBoxMaxOtklonenie;
+
+
+
+	private: System::Windows::Forms::TabPage^  tabPage2;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::TextBox^  textBox4;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::Label^  label12;
+	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::Label^  label10;
+	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::Label^  label8;
+	private: System::Windows::Forms::Label^  label15;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::DataGridView^  dataGridView3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column9;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column10;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column11;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column12;
 
 
 
@@ -122,8 +150,36 @@ namespace CppWinForm1 {
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RyadRaspredelenia = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->textBoxMaxOtklonenie = (gcnew System::Windows::Forms::TextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
+			this->tabControl1->SuspendLayout();
+			this->tabPage1->SuspendLayout();
+			this->tabPage2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -181,7 +237,7 @@ namespace CppWinForm1 {
 					this->FirstShooter, this->SecondShooter, this->ThirdShooter
 			});
 			this->dataGridView1->EnableHeadersVisualStyles = false;
-			this->dataGridView1->Location = System::Drawing::Point(592, 29);
+			this->dataGridView1->Location = System::Drawing::Point(537, 30);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->Size = System::Drawing::Size(403, 431);
@@ -221,7 +277,7 @@ namespace CppWinForm1 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(589, 13);
+			this->label5->Location = System::Drawing::Point(534, 9);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(180, 13);
 			this->label5->TabIndex = 7;
@@ -263,7 +319,7 @@ namespace CppWinForm1 {
 					this->Column2, this->Column3, this->RyadRaspredelenia
 			});
 			this->dataGridView2->GridColor = System::Drawing::SystemColors::Control;
-			this->dataGridView2->Location = System::Drawing::Point(19, 196);
+			this->dataGridView2->Location = System::Drawing::Point(3, 30);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->RowHeadersVisible = false;
 			this->dataGridView2->Size = System::Drawing::Size(528, 600);
@@ -291,28 +347,242 @@ namespace CppWinForm1 {
 			this->RyadRaspredelenia->Name = L"RyadRaspredelenia";
 			this->RyadRaspredelenia->Width = 225;
 			// 
+			// tabControl1
+			// 
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Location = System::Drawing::Point(16, 197);
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(1074, 693);
+			this->tabControl1->TabIndex = 12;
+			// 
+			// tabPage1
+			// 
+			this->tabPage1->Controls->Add(this->label7);
+			this->tabPage1->Controls->Add(this->textBoxMaxOtklonenie);
+			this->tabPage1->Controls->Add(this->dataGridView2);
+			this->tabPage1->Controls->Add(this->dataGridView1);
+			this->tabPage1->Controls->Add(this->label5);
+			this->tabPage1->Location = System::Drawing::Point(4, 22);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(1066, 667);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Розыгрыш значений с.в.";
+			this->tabPage1->UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this->tabPage2->Controls->Add(this->label14);
+			this->tabPage2->Controls->Add(this->textBox4);
+			this->tabPage2->Controls->Add(this->label13);
+			this->tabPage2->Controls->Add(this->label12);
+			this->tabPage2->Controls->Add(this->label11);
+			this->tabPage2->Controls->Add(this->label10);
+			this->tabPage2->Controls->Add(this->label9);
+			this->tabPage2->Controls->Add(this->label8);
+			this->tabPage2->Controls->Add(this->label15);
+			this->tabPage2->Controls->Add(this->panel1);
+			this->tabPage2->Controls->Add(this->dataGridView3);
+			this->tabPage2->Location = System::Drawing::Point(4, 22);
+			this->tabPage2->Name = L"tabPage2";
+			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage2->Size = System::Drawing::Size(1066, 667);
+			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Text = L"Характеристики";
+			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(0, 6);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(271, 13);
+			this->label7->TabIndex = 13;
+			this->label7->Text = L"Максимальное отклонение частоты от вероятности";
+			// 
+			// textBoxMaxOtklonenie
+			// 
+			this->textBoxMaxOtklonenie->Location = System::Drawing::Point(277, 6);
+			this->textBoxMaxOtklonenie->Name = L"textBoxMaxOtklonenie";
+			this->textBoxMaxOtklonenie->Size = System::Drawing::Size(100, 20);
+			this->textBoxMaxOtklonenie->TabIndex = 12;
+			this->textBoxMaxOtklonenie->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox3_TextChanged);
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(528, 6);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(104, 13);
+			this->label14->TabIndex = 21;
+			this->label14->Text = L"Мера расхождения";
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(528, 22);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(166, 20);
+			this->textBox4->TabIndex = 20;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(5, 166);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(28, 13);
+			this->label13->TabIndex = 19;
+			this->label13->Text = L"0,75";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(5, 285);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(28, 13);
+			this->label12->TabIndex = 18;
+			this->label12->Text = L"0,25";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(9, 227);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(22, 13);
+			this->label11->TabIndex = 17;
+			this->label11->Text = L"0,5";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(20, 108);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(13, 13);
+			this->label10->TabIndex = 16;
+			this->label10->Text = L"1";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(30, 357);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(694, 13);
+			this->label9->TabIndex = 15;
+			this->label9->Text = resources->GetString(L"label9.Text");
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(7, 73);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(26, 13);
+			this->label8->TabIndex = 14;
+			this->label8->Text = L"F(X)";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(727, 357);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(14, 13);
+			this->label15->TabIndex = 13;
+			this->label15->Text = L"Х";
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->panel1->Location = System::Drawing::Point(33, 73);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(708, 281);
+			this->panel1->TabIndex = 12;
+			// 
+			// dataGridView3
+			// 
+			this->dataGridView3->BackgroundColor = System::Drawing::SystemColors::Control;
+			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->Column5,
+					this->Column6, this->Column7, this->Column8, this->Column9, this->Column10, this->Column11, this->Column12
+			});
+			this->dataGridView3->Location = System::Drawing::Point(33, 6);
+			this->dataGridView3->Name = L"dataGridView3";
+			this->dataGridView3->Size = System::Drawing::Size(489, 49);
+			this->dataGridView3->TabIndex = 11;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Eη";
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 50;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L" x̅";
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 50;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"|Eη- x̅|";
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 70;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Dη";
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 50;
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"S^2";
+			this->Column9->Name = L"Column9";
+			this->Column9->Width = 50;
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"|Dη-S2|";
+			this->Column10->Name = L"Column10";
+			this->Column10->Width = 70;
+			// 
+			// Column11
+			// 
+			this->Column11->HeaderText = L"Me^";
+			this->Column11->Name = L"Column11";
+			this->Column11->Width = 50;
+			// 
+			// Column12
+			// 
+			this->Column12->HeaderText = L"R^";
+			this->Column12->Name = L"Column12";
+			this->Column12->Width = 50;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1007, 807);
-			this->Controls->Add(this->dataGridView2);
+			this->ClientSize = System::Drawing::Size(1141, 902);
+			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->buttonGO);
 			this->Controls->Add(this->textBoxNumberOfExp);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->buttonUpdatePMatrix);
 			this->Controls->Add(this->textBoxNumberOfShoots);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"MyForm";
-			this->Text = L"Лабораторная работа по ТВиМС";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
+			this->tabControl1->ResumeLayout(false);
+			this->tabPage1->ResumeLayout(false);
+			this->tabPage1->PerformLayout();
+			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -427,6 +697,7 @@ namespace CppWinForm1 {
 	}
 
 	private: System::Void buttonGO_Click(System::Object^  sender, System::EventArgs^  e) {
+		//RASSCHET
 		LoadPMatrix();
 		
 		std::map<int, int> mapka;
@@ -435,7 +706,20 @@ namespace CppWinForm1 {
 		String^ Nstr = textBoxNumberOfExp->Text;
 		N = N.Parse(Nstr);
 
+		//**
+		// NEW CODE:
+		double E = 1 / p; //мат. ожидание
+		double xs = 0; //выборочное среднее
+		double D = (1 - p) / pow(p, 2); //дисперсия
+		double S2 = 0; //выборочная дисперсия
+		double Me = 0;
+		double R = 0; //размах выборки
+		double max = 0; //максимальное отклонение частоты от вероятности 
+		//**
+
+
 		dataGridView2->Rows->Clear();
+		dataGridView3->Rows->Clear();
 
 		srand((unsigned int)time(0));
 
@@ -458,8 +742,24 @@ namespace CppWinForm1 {
 			double rasrpFreq = ryadR[sv];
 			dataGridView2->Rows[i]->Cells[3]->Value = rasrpFreq.ToString();
 
+			int tmp = abs(rasrpFreq - freq);
+			if (tmp > max) max = tmp;
+
+			xs += sv * num;
+
 			i++;
 		}
+
+
+		textBoxMaxOtklonenie->Text = max.ToString();
+		xs /= N;
+
+
+
+
+
+
+
 	
 	}
 
@@ -505,6 +805,10 @@ namespace CppWinForm1 {
 	private: System::Void dataGridView2_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
 	}
+
+
+private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 
 }
