@@ -78,6 +78,9 @@ namespace CppWinForm1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  RyadRaspredelenia;
+	private: System::Windows::Forms::TextBox^  textBoxSummaFreq;
+
+	private: System::Windows::Forms::Label^  label7;
 
 
 
@@ -122,6 +125,8 @@ namespace CppWinForm1 {
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RyadRaspredelenia = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->textBoxSummaFreq = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->SuspendLayout();
@@ -291,11 +296,31 @@ namespace CppWinForm1 {
 			this->RyadRaspredelenia->Name = L"RyadRaspredelenia";
 			this->RyadRaspredelenia->Width = 225;
 			// 
+			// textBoxSummaFreq
+			// 
+			this->textBoxSummaFreq->Location = System::Drawing::Point(445, 146);
+			this->textBoxSummaFreq->Name = L"textBoxSummaFreq";
+			this->textBoxSummaFreq->Size = System::Drawing::Size(100, 20);
+			this->textBoxSummaFreq->TabIndex = 13;
+			this->textBoxSummaFreq->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(442, 130);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(114, 13);
+			this->label7->TabIndex = 12;
+			this->label7->Text = L"Сумма вероятностей";
+			this->label7->Click += gcnew System::EventHandler(this, &MyForm::label7_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1007, 807);
+			this->Controls->Add(this->textBoxSummaFreq);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->dataGridView2);
 			this->Controls->Add(this->buttonGO);
 			this->Controls->Add(this->textBoxNumberOfExp);
@@ -411,6 +436,7 @@ namespace CppWinForm1 {
 				}
 			}
 		}
+
 		return sv;
 	}
 
@@ -460,6 +486,8 @@ namespace CppWinForm1 {
 
 			i++;
 		}
+
+		textBoxSummaFreq->Text = ryadR[0].ToString();
 	
 	}
 
@@ -483,19 +511,20 @@ namespace CppWinForm1 {
 					for (int i = 0; i < a; i++) {
 						cur *= (1 - p(0, i));
 					}
-					if(a != R) cur *= p(0, a);
+					if(a != R - 1) cur *= p(0, a);
 
 					for (int i = 0; i < b; i++) {
 						cur *= (1 - p(1, i));
 					}
-					if(b != R) cur *= p(1, b);
+					if(b != R - 1) cur *= p(1, b);
 
 					for (int i = 0; i < c; i++) {
 						cur *= (1 - p(2, i));
 					}
-					if(c != R) cur *= p(2, c);
+					if(c != R - 1) cur *= p(2, c);
 
 					mapka[sum] += cur;
+					mapka[0] += cur;
 				}
 			}
 		}
@@ -505,6 +534,10 @@ namespace CppWinForm1 {
 	private: System::Void dataGridView2_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 
 	}
+private: System::Void label7_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 
 }
