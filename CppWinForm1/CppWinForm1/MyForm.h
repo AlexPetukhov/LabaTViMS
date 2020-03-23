@@ -450,6 +450,7 @@ namespace CppWinForm1 {
 			this->textBoxMeraRashoj->Name = L"textBoxMeraRashoj";
 			this->textBoxMeraRashoj->Size = System::Drawing::Size(166, 20);
 			this->textBoxMeraRashoj->TabIndex = 20;
+			this->textBoxMeraRashoj->TextChanged += gcnew System::EventHandler(this, &MyForm::textBoxMeraRashoj_TextChanged);
 			// 
 			// label13
 			// 
@@ -851,23 +852,10 @@ namespace CppWinForm1 {
 			g->DrawLine(penGray, p1, p2);
 		}
 
-		//Teoriya F(x):
-		Point p1 = Point(0, panel1->Height - 1);
-		Point p2 = Point(3 * sizeCageX, panel1->Height - 1);
-		g->DrawLine(penBlack, p1, p2);
-
-		for (int i = 1; i < 20; i++) {
-			int x1 = i;
-			pt += ryadR[x1];
-
-			Point p1 = Point(x1 * sizeCageX, panel1->Height - pt*sizeCageY);
-			Point p2 = Point((x1 + 1) * sizeCageX, panel1->Height - pt*sizeCageY);
-			g->DrawLine(penBlack, p1, p2);
-		}
-
-		//Praktika F(x):
-		
 		if (canPlotGraph) {
+			//Teoriya F(x):
+			//Praktika F(x):
+		
 			double MeraRashoj = 0; //мера расхождения
 			auto it1 = mapka.begin();
 			auto it2 = mapka.begin();
@@ -875,37 +863,31 @@ namespace CppWinForm1 {
 			double Fprak = 0, Fteor = 0;
 
 			Point p1 = Point(0, panel1->Height - 1);
-			Point p2 = Point((*it1).first*sizeCageX, panel1->Height - 1);
+			Point p2 = Point(3 * sizeCageX, panel1->Height - 1);
 			g->DrawLine(penRed, p1, p2);
+			g->DrawLine(penBlack, p1, p2);
 
-			while (it2 != mapka.end()) {
-				int num = (*it1).second;
-				int x1 = (int)(*it1).first;
-				int x2 = (int)(*it2).first;
+			for (int x = 1; x < 20; x++) {
+				Fprak += (double)mapka[x] / N;
+				Fteor += ryadR[x];
 
-				Fprak += (double)num / N;
-				Fteor += ryadR[x1];
+				Point p1 = Point(x * sizeCageX, panel1->Height - Fteor*sizeCageY);
+				Point p2 = Point((x + 1) * sizeCageX, panel1->Height - Fteor*sizeCageY);
+				g->DrawLine(penBlack, p1, p2);
 
-				Point p3 = Point(x1 * sizeCageX, panel1->Height - Fprak*sizeCageY);
-				Point p4 = Point(x2 * sizeCageX, panel1->Height - Fprak*sizeCageY);
+				Point p3 = Point(x * sizeCageX, panel1->Height - Fprak*sizeCageY);	
+				Point p4 = Point((x + 1) * sizeCageX, panel1->Height - Fprak*sizeCageY);
+				if (Fprak == 0) {
+					p3 = Point(x * sizeCageX, panel1->Height - 1);
+					p4 = Point((x + 1) * sizeCageX, panel1->Height - 1);
+				}
 				g->DrawLine(penRed, p3, p4);
 
-				if (abs(Fprak - Fteor) > MeraRashoj) //тут возможно косяк
-					MeraRashoj = abs(Fprak - Fteor);
-
-				it1++;
-				it2++;
+				if (abs(Fprak - Fteor) > MeraRashoj) MeraRashoj = abs(Fprak - Fteor);
 			}
 
 			textBoxMeraRashoj->Text = MeraRashoj.ToString();
-
-			int x1 = (int)((*it1).first);
-			int x2 = 20;
-			Point p3 = Point(x1*sizeCageX, panel1->Height - sizeCageY);
-			Point p4 = Point(x2*sizeCageX, panel1->Height - sizeCageY);
-			g->DrawLine(penRed, p3, p4);
 		}
-		
 	}
 
 	private: double p(int x, int y) {
@@ -956,6 +938,8 @@ namespace CppWinForm1 {
 private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void dataGridView3_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+}
+private: System::Void textBoxMeraRashoj_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 
