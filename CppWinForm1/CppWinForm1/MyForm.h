@@ -11,8 +11,12 @@ namespace CppWinForm1 {
 	std::vector<std::vector<double> > P;
 	int R;
 	int N;
+	int k; // kol-vo intervalov
+	double alpha; // yroven znachimosti
 	int canPlotGraph = 0;
 	std::map<int, int> mapka;
+	std::map<int, double> FteorRaspredelenie;
+	std::map<int, double> ryadR;
 
 
 	using namespace System;
@@ -111,6 +115,25 @@ namespace CppWinForm1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column12;
 	private: System::Windows::Forms::Label^  label16;
 	private: System::Windows::Forms::TextBox^  textBoxMaxOtklonenieWhere;
+	private: System::Windows::Forms::TabPage^  tabPage3;
+	private: System::Windows::Forms::Button^  buttonZadat;
+
+	private: System::Windows::Forms::TextBox^  textBoxAlpha;
+	private: System::Windows::Forms::Label^  label18;
+	private: System::Windows::Forms::TextBox^  textBoxNumOfIntervals;
+	private: System::Windows::Forms::Label^  label17;
+	private: System::Windows::Forms::DataGridView^  dataGridView4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column13;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column14;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column15;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column16;
+	private: System::Windows::Forms::TextBox^  textBox9;
+	private: System::Windows::Forms::TextBox^  textBoxFR0;
+
+	private: System::Windows::Forms::Label^  label19;
+	private: System::Windows::Forms::TextBox^  textboxR0;
+
+	private: System::Windows::Forms::Label^  label20;
 
 
 
@@ -181,12 +204,30 @@ namespace CppWinForm1 {
 			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxFR0 = (gcnew System::Windows::Forms::TextBox());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->textboxR0 = (gcnew System::Windows::Forms::TextBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column14 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column15 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column16 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->buttonZadat = (gcnew System::Windows::Forms::Button());
+			this->textBoxAlpha = (gcnew System::Windows::Forms::TextBox());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->textBoxNumOfIntervals = (gcnew System::Windows::Forms::TextBox());
+			this->label17 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
+			this->tabPage3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -305,7 +346,7 @@ namespace CppWinForm1 {
 			this->textBoxNumberOfExp->Name = L"textBoxNumberOfExp";
 			this->textBoxNumberOfExp->Size = System::Drawing::Size(100, 20);
 			this->textBoxNumberOfExp->TabIndex = 9;
-			this->textBoxNumberOfExp->Text = L"10000";
+			this->textBoxNumberOfExp->Text = L"1000";
 			// 
 			// buttonGO
 			// 
@@ -358,6 +399,7 @@ namespace CppWinForm1 {
 			// 
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
 			this->tabControl1->Location = System::Drawing::Point(16, 197);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
@@ -588,6 +630,143 @@ namespace CppWinForm1 {
 			this->Column12->Name = L"Column12";
 			this->Column12->Width = 50;
 			// 
+			// tabPage3
+			// 
+			this->tabPage3->Controls->Add(this->textBox9);
+			this->tabPage3->Controls->Add(this->textBoxFR0);
+			this->tabPage3->Controls->Add(this->label19);
+			this->tabPage3->Controls->Add(this->textboxR0);
+			this->tabPage3->Controls->Add(this->label20);
+			this->tabPage3->Controls->Add(this->dataGridView4);
+			this->tabPage3->Controls->Add(this->buttonZadat);
+			this->tabPage3->Controls->Add(this->textBoxAlpha);
+			this->tabPage3->Controls->Add(this->label18);
+			this->tabPage3->Controls->Add(this->textBoxNumOfIntervals);
+			this->tabPage3->Controls->Add(this->label17);
+			this->tabPage3->Location = System::Drawing::Point(4, 22);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage3->Size = System::Drawing::Size(942, 637);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"Проверка Гипотиз";
+			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
+			// textBox9
+			// 
+			this->textBox9->Location = System::Drawing::Point(497, 74);
+			this->textBox9->Name = L"textBox9";
+			this->textBox9->Size = System::Drawing::Size(100, 20);
+			this->textBox9->TabIndex = 16;
+			// 
+			// textBoxFR0
+			// 
+			this->textBoxFR0->Location = System::Drawing::Point(497, 47);
+			this->textBoxFR0->Name = L"textBoxFR0";
+			this->textBoxFR0->Size = System::Drawing::Size(228, 20);
+			this->textBoxFR0->TabIndex = 15;
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(458, 47);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(33, 13);
+			this->label19->TabIndex = 14;
+			this->label19->Text = L"F(R0)";
+			// 
+			// textboxR0
+			// 
+			this->textboxR0->Location = System::Drawing::Point(497, 14);
+			this->textboxR0->Name = L"textboxR0";
+			this->textboxR0->Size = System::Drawing::Size(228, 20);
+			this->textboxR0->TabIndex = 13;
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(458, 21);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(21, 13);
+			this->label20->TabIndex = 12;
+			this->label20->Text = L"R0";
+			// 
+			// dataGridView4
+			// 
+			this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView4->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->Column13,
+					this->Column14, this->Column15, this->Column16
+			});
+			this->dataGridView4->Location = System::Drawing::Point(9, 38);
+			this->dataGridView4->Name = L"dataGridView4";
+			this->dataGridView4->Size = System::Drawing::Size(438, 458);
+			this->dataGridView4->TabIndex = 11;
+			this->dataGridView4->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView4_CellContentClick);
+			// 
+			// Column13
+			// 
+			this->Column13->HeaderText = L" Интервал";
+			this->Column13->Name = L"Column13";
+			// 
+			// Column14
+			// 
+			this->Column14->HeaderText = L"Значение";
+			this->Column14->Name = L"Column14";
+			// 
+			// Column15
+			// 
+			this->Column15->HeaderText = L"Количество попаданий";
+			this->Column15->Name = L"Column15";
+			// 
+			// Column16
+			// 
+			this->Column16->HeaderText = L"Теоритические вероятности(q)";
+			this->Column16->Name = L"Column16";
+			// 
+			// buttonZadat
+			// 
+			this->buttonZadat->Location = System::Drawing::Point(356, 11);
+			this->buttonZadat->Name = L"buttonZadat";
+			this->buttonZadat->Size = System::Drawing::Size(75, 23);
+			this->buttonZadat->TabIndex = 10;
+			this->buttonZadat->Text = L"Задать";
+			this->buttonZadat->UseVisualStyleBackColor = true;
+			this->buttonZadat->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			// 
+			// textBoxAlpha
+			// 
+			this->textBoxAlpha->Location = System::Drawing::Point(299, 13);
+			this->textBoxAlpha->Name = L"textBoxAlpha";
+			this->textBoxAlpha->Size = System::Drawing::Size(51, 20);
+			this->textBoxAlpha->TabIndex = 9;
+			this->textBoxAlpha->Text = L"0,05";
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(166, 15);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(127, 13);
+			this->label18->TabIndex = 8;
+			this->label18->Text = L"Уровень значимости(α)";
+			// 
+			// textBoxNumOfIntervals
+			// 
+			this->textBoxNumOfIntervals->Location = System::Drawing::Point(113, 12);
+			this->textBoxNumOfIntervals->Name = L"textBoxNumOfIntervals";
+			this->textBoxNumOfIntervals->Size = System::Drawing::Size(47, 20);
+			this->textBoxNumOfIntervals->TabIndex = 3;
+			this->textBoxNumOfIntervals->Text = L"4";
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(6, 12);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(101, 13);
+			this->label17->TabIndex = 2;
+			this->label17->Text = L"Число интервалов";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -613,6 +792,9 @@ namespace CppWinForm1 {
 			this->tabPage2->ResumeLayout(false);
 			this->tabPage2->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
+			this->tabPage3->ResumeLayout(false);
+			this->tabPage3->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -694,7 +876,7 @@ namespace CppWinForm1 {
 
 	private: int searchSV() {
 		int sv = 0;
-		
+
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < R; i++) {
 				double p = P[j][i];
@@ -722,16 +904,27 @@ namespace CppWinForm1 {
 			}
 		}
 	}
-
+	private: void CalcFteor() {
+		for (int x = 1; x <= 10005; x++) {
+			FteorRaspredelenie[x] = FteorRaspredelenie[x - 1] + ryadR[x];
+		}
+	}
 	private: System::Void buttonGO_Click(System::Object^  sender, System::EventArgs^  e) {
 		//RASSCHET
 		LoadPMatrix();
-		
 		mapka.clear();
-		std::map<int, double> ryadR = CalcRyadRaspredelenia();
+		ryadR = CalcRyadRaspredelenia();
+		CalcFteor();
+		
 
 		String^ Nstr = textBoxNumberOfExp->Text;
 		N = N.Parse(Nstr);
+
+
+		String^ str7;
+		str7 = textBoxAlpha->Text;
+		alpha = alpha.Parse(str7);
+
 
 		std::vector<int> viborka;
 		double E = 0; //мат. ожидание
@@ -744,6 +937,14 @@ namespace CppWinForm1 {
 		double maxWhere = -1; // номер максимальное отклонение частоты от вероятности 
 
 		canPlotGraph = 1;
+
+
+		std::vector<double> teorProbPopadaniaVInterval(N); //теорeтическая вероятность попадания в интервал 
+		std::vector<int> numViborkaPopadaniaVInterval(N, 0); //число наблюдений, в j интервале
+		std::vector<double> interval(N); //интервалы
+		double R0 = 0; //мера расхождения 
+
+
 
 		dataGridView2->Rows->Clear();
 		dataGridView3->Rows->Clear();
@@ -821,6 +1022,63 @@ namespace CppWinForm1 {
 		Razmah = viborka[N - 1] - viborka[0];
 		dataGridView3->Rows[0]->Cells[7]->Value = Razmah.ToString();
 		panel1->Refresh();
+
+
+
+		//------------------------------------ laba 3:
+		
+		interval[0] = 0;
+		for (int i = 1; i <= k; i++) {
+			interval[i] = Convert::ToDouble(dataGridView4->Rows[i - 1]->Cells[1]->Value);
+		}
+
+		for (int i = 0; i < N; i++) {
+			int j = 1;
+			while (j <= k) {
+				if (viborka[i] <= interval[j]) {
+					numViborkaPopadaniaVInterval[j]++;
+					break;
+				}
+				else {
+					j++;
+				}
+			}
+		}
+
+		int N1 = N;
+		int j = 0;
+		for (j = 1; j <= k; j++) {
+			dataGridView4->Rows[j - 1]->Cells[2]->Value = (numViborkaPopadaniaVInterval[j]).ToString();
+			N1 -= numViborkaPopadaniaVInterval[j];
+		}
+
+		numViborkaPopadaniaVInterval[j + 1] = N1;
+		if (N1) {
+			dataGridView4->Rows[j - 1]->Cells[2]->Value = (N1).ToString();
+		}
+
+		int j1 = 0;
+		for (j1 = 1; j1 <= k; j1++) {
+			teorProbPopadaniaVInterval[j1] = FteorRaspredelenie[interval[j1]] - FteorRaspredelenie[interval[j1 - 1]];
+			dataGridView4->Rows[j1 - 1]->Cells[3]->Value = (teorProbPopadaniaVInterval[j1]).ToString();
+		}
+
+		teorProbPopadaniaVInterval[j1] = 1 - FteorRaspredelenie[interval[j1 - 1]];
+		dataGridView4->Rows[j1 - 1]->Cells[3]->Value = (teorProbPopadaniaVInterval[j1]).ToString();
+
+		for (int j = 1; j <= k + 1; j++) {
+			double n1 = numViborkaPopadaniaVInterval[j];
+			double n2 = teorProbPopadaniaVInterval[j];
+			R0 += (n1 - N * n2) * (n1 - N * n2) / (N * n2);
+			textboxR0->Text = R0.ToString();
+		}
+
+		double a = 0, b = R0, summ = 0; 
+		int N = 1000;
+		for (int i = 1; i < N; i++) {
+		//	summ += 
+		}
+
 	}
 
 	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
@@ -930,16 +1188,33 @@ namespace CppWinForm1 {
 		return mapka;
 	}
 
-	private: System::Void dataGridView2_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		while (dataGridView4->RowCount > 1) {
+			int r = dataGridView4->RowCount;
+			dataGridView4->Rows->RemoveAt(dataGridView4->RowCount - 2);
+		}
 
+
+		String^ str2;
+		str2 = textBoxNumOfIntervals->Text;
+		k = k.Parse(str2);
+		for (int i = 0; i < k; i++)
+		{
+			dataGridView4->Rows->Add();
+			dataGridView4->Rows[i]->Cells[0]->Value = "Z" + (i + 1).ToString();
+		}
+		dataGridView4->Rows->Add();
 	}
 
-
 private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void dataGridView2_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 private: System::Void dataGridView3_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 private: System::Void textBoxMeraRashoj_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void dataGridView4_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 };
 
