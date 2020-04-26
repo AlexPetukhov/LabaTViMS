@@ -1,10 +1,11 @@
 ﻿  MyForm.cpp
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1062): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1066): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1132): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1133): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\projects\labatvims\cppwinform1\cppwinform1\myform.h(902): warning C4700: uninitialized local variable 'cur' used
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(911): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1094): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1098): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1168): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1169): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1172): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\MyForm.h(1173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\projects\labatvims\cppwinform1\cppwinform1\myform.h(934): warning C4700: uninitialized local variable 'cur' used
   CppWinForm1.vcxproj -> C:\projects\LabaTViMS\CppWinForm1\Debug\CppWinForm1.exe
   CppWinForm1.vcxproj -> C:\projects\LabaTViMS\CppWinForm1\Debug\CppWinForm1.pdb (Full PDB)

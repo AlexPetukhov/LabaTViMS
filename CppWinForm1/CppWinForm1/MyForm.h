@@ -14,6 +14,7 @@ namespace CppWinForm1 {
 	int k; // kol-vo intervalov
 	double alpha; // yroven znachimosti
 	int canPlotGraph = 0;
+	double pi = 3.14159265358979323846;
 	std::map<int, int> mapka;
 	std::map<int, double> FteorRaspredelenie;
 	std::map<int, double> ryadR;
@@ -127,13 +128,15 @@ namespace CppWinForm1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column14;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column15;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column16;
-	private: System::Windows::Forms::TextBox^  textBox9;
+	private: System::Windows::Forms::TextBox^  textBoxResult;
+
 	private: System::Windows::Forms::TextBox^  textBoxFR0;
 
 	private: System::Windows::Forms::Label^  label19;
 	private: System::Windows::Forms::TextBox^  textboxR0;
 
 	private: System::Windows::Forms::Label^  label20;
+private: System::Windows::Forms::Label^  label21;
 
 
 
@@ -205,7 +208,8 @@ namespace CppWinForm1 {
 			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->textBoxResult = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxFR0 = (gcnew System::Windows::Forms::TextBox());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->textboxR0 = (gcnew System::Windows::Forms::TextBox());
@@ -632,7 +636,8 @@ namespace CppWinForm1 {
 			// 
 			// tabPage3
 			// 
-			this->tabPage3->Controls->Add(this->textBox9);
+			this->tabPage3->Controls->Add(this->label21);
+			this->tabPage3->Controls->Add(this->textBoxResult);
 			this->tabPage3->Controls->Add(this->textBoxFR0);
 			this->tabPage3->Controls->Add(this->label19);
 			this->tabPage3->Controls->Add(this->textboxR0);
@@ -651,16 +656,25 @@ namespace CppWinForm1 {
 			this->tabPage3->Text = L"Проверка Гипотиз";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
-			// textBox9
+			// label21
 			// 
-			this->textBox9->Location = System::Drawing::Point(497, 74);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(100, 20);
-			this->textBox9->TabIndex = 16;
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(458, 81);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(62, 13);
+			this->label21->TabIndex = 17;
+			this->label21->Text = L"Результат:";
+			// 
+			// textBoxResult
+			// 
+			this->textBoxResult->Location = System::Drawing::Point(526, 74);
+			this->textBoxResult->Name = L"textBoxResult";
+			this->textBoxResult->Size = System::Drawing::Size(100, 20);
+			this->textBoxResult->TabIndex = 16;
 			// 
 			// textBoxFR0
 			// 
-			this->textBoxFR0->Location = System::Drawing::Point(497, 47);
+			this->textBoxFR0->Location = System::Drawing::Point(526, 47);
 			this->textBoxFR0->Name = L"textBoxFR0";
 			this->textBoxFR0->Size = System::Drawing::Size(228, 20);
 			this->textBoxFR0->TabIndex = 15;
@@ -668,7 +682,7 @@ namespace CppWinForm1 {
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(458, 47);
+			this->label19->Location = System::Drawing::Point(458, 54);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(33, 13);
 			this->label19->TabIndex = 14;
@@ -676,7 +690,7 @@ namespace CppWinForm1 {
 			// 
 			// textboxR0
 			// 
-			this->textboxR0->Location = System::Drawing::Point(497, 14);
+			this->textboxR0->Location = System::Drawing::Point(526, 15);
 			this->textboxR0->Name = L"textboxR0";
 			this->textboxR0->Size = System::Drawing::Size(228, 20);
 			this->textboxR0->TabIndex = 13;
@@ -684,7 +698,7 @@ namespace CppWinForm1 {
 			// label20
 			// 
 			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(458, 21);
+			this->label20->Location = System::Drawing::Point(458, 22);
 			this->label20->Name = L"label20";
 			this->label20->Size = System::Drawing::Size(21, 13);
 			this->label20->TabIndex = 12;
@@ -893,6 +907,24 @@ namespace CppWinForm1 {
 		return sv;
 	}
 
+	private: double F(double x) {
+		int index = x;
+		return FteorRaspredelenie[index];
+	}
+
+	private: double G(double x) {
+		if (x == 1) return 1;
+		if (x == 0.5) return sqrt(pi);
+		return (x - 1) * G(x - 1);
+	}
+
+	private: double fhi2(double x) {
+		if (x <= 0) return 0;
+		double e = 2.1718281828459045;
+		return pow(2, -(k - 1) / 2) * pow(G((k - 1) / 2), -1) * pow(x, (k - 1) / 2 - 1) * pow(e, -x / 2);
+	}
+
+
 	private: void LoadPMatrix() {
 		for (int i = 0; i < 3; i++) {
 			P[i].clear();
@@ -1073,12 +1105,16 @@ namespace CppWinForm1 {
 			textboxR0->Text = R0.ToString();
 		}
 
-		double a = 0, b = R0, summ = 0; 
+		double a = 0, b = R0, integral = 0; 
 		int N = 1000;
-		for (int i = 1; i < N; i++) {
-		//	summ += 
+		for (int i = k; i < N; i++) {
+			integral += (fhi2(a + (b - a) * (k - 1) / N) + fhi2(a + (b - a) * k / N)) * (b - a) / (2 * N);
 		}
 
+		textBoxFR0->Text = (1 - integral).ToString();
+
+		if ((1 - integral) < alpha) textBoxResult->Text = "Отклоняем";
+		else textBoxResult->Text = "Принимаем";
 	}
 
 	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
