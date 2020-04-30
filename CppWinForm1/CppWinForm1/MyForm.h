@@ -919,11 +919,24 @@ private: System::Windows::Forms::Label^  label21;
 	}
 
 	private: double fhi2(double x) {
-		if (x <= 0) return 0;
+		//if (x <= 0) return 0;
 		double e = 2.1718281828459045;
-		return pow(2, -(k - 1) / 2) * pow(G((k - 1) / 2), -1) * pow(x, (k - 1) / 2 - 1) * pow(e, -x / 2);
+		return pow(2, -(k - 1) / 2) * (pow(G((k - 1) / 2), -1)) * pow(x, (k - 1) / 2 - 1) * pow(e, -x / 2);
 	}
 
+			 private: double G1(double a)
+			 {
+				 if (a == 1)
+					 return 1;
+				 else
+					 return (a - 1)*G1(a - 1);
+			 }
+
+		private: double g(double x)
+		{
+			double e = 2.7182818285;
+			return pow(2, -(k - 1) / 2)*(pow(G1((k - 1) / 2), -1))*pow(x, (k - 1) / 2 - 1)*pow(e, -x / 2);
+		}
 
 	private: void LoadPMatrix() {
 		for (int i = 0; i < 3; i++) {
@@ -1101,14 +1114,16 @@ private: System::Windows::Forms::Label^  label21;
 		for (int j = 1; j <= k + 1; j++) {
 			double n1 = numViborkaPopadaniaVInterval[j];
 			double n2 = teorProbPopadaniaVInterval[j];
-			R0 += (n1 - N * n2) * (n1 - N * n2) / (N * n2);
+			R0 += pow(n1 - N * n2, 2) / (N * n2);
 			textboxR0->Text = R0.ToString();
 		}
 
-		double a = 0, b = R0, integral = 0; 
-		int N = 1000;
-		for (int i = k; i < N; i++) {
-			integral += (fhi2(a + (b - a) * (k - 1) / N) + fhi2(a + (b - a) * k / N)) * (b - a) / (2 * N);
+
+
+		double a = 0; double b = R0; double integral = 0; 
+		//int N = 1000;
+		for (int i = 1; i < N; i++) {
+			integral += (g(a + (b - a)*(i - 1) / N) + g(a + (b - a)*(i) / N)) * (b - a) / (2 * N);
 		}
 
 		textBoxFR0->Text = (1 - integral).ToString();
