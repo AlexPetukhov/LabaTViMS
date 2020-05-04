@@ -912,6 +912,7 @@ private: System::Windows::Forms::Label^  label21;
 		return FteorRaspredelenie[index];
 	}
 
+			 /*
 	private: double G(double x) {
 		if (x == 1) return 1;
 		if (x == 0.5) return sqrt(pi);
@@ -923,19 +924,23 @@ private: System::Windows::Forms::Label^  label21;
 		double e = 2.1718281828459045;
 		return pow(2, -(k - 1) / 2) * (pow(G((k - 1) / 2), -1)) * pow(x, (k - 1) / 2 - 1) * pow(e, -x / 2);
 	}
+	*/
 
-			 private: double G1(double a)
-			 {
-				 if (a == 1)
-					 return 1;
-				 else
-					 return (a - 1)*G1(a - 1);
-			 }
+		private: double G(double a)
+		{
+			if (a == 0.5) return sqrt(pi);
+			if (a == 1)
+				return 1;
+			else
+				return (a - 1)*G(a - 1);
+		}
 
 		private: double g(double x)
 		{
+			if (x <= 0) return 0;
 			double e = 2.7182818285;
-			return pow(2, -(k - 1) / 2)*(pow(G1((k - 1) / 2), -1))*pow(x, (k - 1) / 2 - 1)*pow(e, -x / 2);
+			//return pow(2, -(k - 1) / 2)*(pow(G((k - 1) / 2), -1))*pow(x, (k - 1) / 2 - 1)*pow(e, -x / 2);
+			return pow(2, -(double)k / 2.0) * (pow(G((double)k / 2.0), -1)) * pow(x, (double)k / 2.0 - 1) * pow(e, -x / 2);
 		}
 
 	private: void LoadPMatrix() {
@@ -1097,10 +1102,8 @@ private: System::Windows::Forms::Label^  label21;
 			N1 -= numViborkaPopadaniaVInterval[j];
 		}
 
-		numViborkaPopadaniaVInterval[j + 1] = N1;
-		if (N1) {
-			dataGridView4->Rows[j - 1]->Cells[2]->Value = (N1).ToString();
-		}
+		numViborkaPopadaniaVInterval[j] = N1;
+		dataGridView4->Rows[j - 1]->Cells[2]->Value = (numViborkaPopadaniaVInterval[j]).ToString();
 
 		int j1 = 0;
 		for (j1 = 1; j1 <= k; j1++) {
@@ -1121,11 +1124,11 @@ private: System::Windows::Forms::Label^  label21;
 
 
 		double a = 0; double b = R0; double integral = 0; 
-		//int N = 1000;
+		int N = 1000;
 		for (int i = 1; i < N; i++) {
-			integral += (g(a + (b - a)*(i - 1) / N) + g(a + (b - a)*(i) / N)) * (b - a) / (2 * N);
+			integral += (g(a + (b - a) * (i - 1) / N) + g(a + (b - a)*(i) / N)) * (b - a) / (2 * N);
 		}
-
+		
 		textBoxFR0->Text = (1 - integral).ToString();
 
 		if ((1 - integral) < alpha) textBoxResult->Text = "Отклоняем";
